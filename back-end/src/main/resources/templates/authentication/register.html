@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header::header}">
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<link>
+<div th:replace="~{layout/navbar::menu}"></div>
+<form method="post" th:action="@{/register}" th:object="${registerUser}">
+    <div class="container mt-5 font-weight-bold">
+        <div class="form-group justify-content-center">
+
+            <div class="row mb-5">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Họ tên trẻ người bảo hộ<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{hoten}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a>Ngày sinh<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-7">
+                            <input th:field="*{ngaysinh}" type="date"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Giới tính<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                                <select class="form-control" id="exampleFormControlSelect1" th:field="*{gioitinh}">
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                    <option value="2">Khác</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>CMNN hoặc CCCD<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{cmnd}" type="text"/>
+                            <p class="text-danger" th:errors="*{email}" th:if="${#fields.hasErrors('cmnd')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a>Quốc tịch<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-7">
+                            <input th:field="*{quoctich}" type="text"/>
+                            <p class="text-danger" th:errors="*{quoctich}" th:if="${#fields.hasErrors('quoctich')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Dân tộc<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{dantoc}" type="text"/>
+                            <p class="text-danger" th:errors="*{dantoc}" th:if="${#fields.hasErrors('dantoc')}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Tỉnh/ thành phố<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{tinh}" type="text"/>
+                            <p class="text-danger" th:errors="*{tinh}" th:if="${#fields.hasErrors('tinh')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a>Quận/ huyện<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-7">
+                            <input th:field="*{huyen}" type="text"/>
+                            <p class="text-danger" th:errors="*{huyen}" th:if="${#fields.hasErrors('huyen')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Phường/ xã<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{xa}" type="text"/>
+                            <p class="text-danger" th:errors="*{xa}" th:if="${#fields.hasErrors('xa')}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a>Địa chỉ<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-5">
+                            <input style="width: 590px; margin-left: 20px;" th:field="*{diachi}" type="text"/>
+                            <p class="text-danger" th:errors="*{diachi}" th:if="${#fields.hasErrors('diachi')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Số điện thoại<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input th:field="*{sdt}" type="text"/>
+                            <p class="text-danger" th:errors="*{sdt}" th:if="${#fields.hasErrors('sdt')}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Tài khoản<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="email" name="email" placeholder="tài khoản email" th:field="*{email}"
+                                   type="text"/>
+                            <p class="text-danger" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a>Mật khẩu<a class="text-danger">(*)</a></a>
+                        </div>
+                        <div class="col-lg-7">
+                            <input id="password" name="password" th:field="*{password}" type="password"/>
+                            <p class="text-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a>Nhập lại mật khẩu<a class="text-danger">(*)</a></a>
+                            <p class="text-danger" th:errors="*{matchingPassword}"
+                               th:if="${#fields.hasErrors('matchingPassword')}"></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="confirmPassword" name="confirmPassword" th:field="*{matchingPassword}"
+                                   type="password"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+        </div>
+        <div class="col-5">
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit"> Đăng ký</button>
+            </div> <!-- form-group// -->
+        </div>
+    </div> <!-- .row// -->
+</form>
+<footer th:replace="~{layout/navbar :: footer}"></footer>
+</body>
+</html>

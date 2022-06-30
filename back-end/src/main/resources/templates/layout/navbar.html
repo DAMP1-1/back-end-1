@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <div th:fragment="menu" class="menu">
+        <div class="row tieude">
+            <div class="col-lg-3">
+                <h6>CỔNG TIÊM CHỦNG VACCINE </h6>
+                <h6>CHO TRẺ EM</h6>
+            </div>
+            <div class="col-lg-6">
+                <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm ml-3 w-75" type="text"
+                        placeholder="Bạn muốn tìm kiếm gì ?" aria-label="Search">
+                </form>
+            </div>
+            <div class="col-lg-3">
+                <ul class="list-right-title">
+                    <li>
+                        ĐƯỜNG DÂY NÓNG : 0xxxxxxxxxxx
+                    </li>
+                    <li>
+                        ĐỊA CHỈ CƠ SỞ :
+                    </li>
+                    <li>
+                        <i>Cơ sở 1: xxx</i>
+                    </li>
+                    <li>
+                        <i>Cơ sở 2: xxx</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row section-menu">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+
+                <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-theme">
+
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                        aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse justify-content-md-center" id="main-menu">
+                        <ul class="navbar-nav text-uppercase mt-2">
+                            <li class="nav-item active " active-color="DeepPink">
+                                <a id="len1" class="nav-link hoverable" href="/home">TRANG CHỦ <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active" active-color="DeepPink">
+                                <a id="len2" class="nav-link hoverable" href="#about">THÔNG BÁO</a>
+                            </li>
+                            <li class="nav-item active" active-color="DeepPink">
+                                <a id="len3" class="nav-link hoverable" th:href="@{/dktiemchung}">ĐĂNG KÝ TIÊM</a>
+                            </li>
+                            <li class="nav-item active" active-color="DeepPink">
+                                <a id="len4" class="nav-link hoverable" th:href="@{/registerforchild}">ĐĂNG KÝ TRẺ</a>
+                            </li>
+                            <li><span class="nav-indicator"></span></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+            <div class="col-lg-3 login-content1">
+                <div sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/register}" style="color: white;text-decoration: none">Đăng ký/</a>
+                    <a th:href="@{/login}" style="color: white;text-decoration: none">Đăng nhập</a>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;     background-color: #3366CC;
+    color: white;">
+                            <span sec:authentication="name">Username</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" th:href="@{/posts/add}" style="color: black; font-size: 16px;">
+                                Đăng Tin
+                            </a>
+                            <a class="dropdown-item" th:href="@{/user/editUser}" style="color: black; font-size: 16px;">
+                                Chỉnh sửa thông tin
+                            </a>
+                            <a class="dropdown-item" th:href="@{/user/changePassword}" style="color: black; font-size: 16px;">
+                                Đổi mật khẩu
+                            </a>
+                            <a class="dropdown-item" th:href="@{/logout}" style="color: black; font-size: 16px;">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--    <div th:fragment="footer" id="footer" class="container-fluid justify-content-center">-->
+<!--        <div class="row text-center justify-content-center">-->
+<!--            <h4 style="height: 120px;width: 100%;  background-color: #3366CC; color: #CDCDCD;text-align: center;font-size: 20px">create by chi hieu</h4>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div th:fragment="footer" class="footer">
+        <footer class="text-left " style="margin-top: 200px   ;background-color:#3366CC; color: black">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-8 mb-md-0">
+                        <h5 class="text-uppercase mb-0">Trung tâm tiêm vacxin cho trẻ Thành phố Đà Nẵng</h5>
+                        <ul class="list-unstyled" >
+                            <li>
+                                <p><i class="fas fa-map-marker-alt"></i> 103 Hùng Vương, Hải Châu 1, Hải Châu, Đà Nẵng
+                                    550000, Việt Nam</p>
+                            </li>
+                            <li>
+                                <p><i class="far fa-clock"></i> Giờ mở cửa Sáng: 07:30–11:00, Chiều: 13:30–16:30</p>
+                            </li>
+                            <li>
+                                <a href="" style="color:white"><i class="fas fa-phone"></i> Hotline: +842363573828</a>
+                            </li>
+                        </ul>
+                    </div>
+                            <div class="col-lg-6 col-md-12 mb-8 mb-md-0">
+                              <h5 class="text-uppercase">Bản đồ</h5>
+                              <iframe class="map"
+                                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61340.4113070111!2d108.17591343831853!3d16.077124818262583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421834447b8df7%3A0x6c438d251f3ad7c5!2zVHJ1bmcgVMOibSBZIFThur8gROG7sSBQaMOybmcgxJDDoCBO4bq1bmcgLSBDxqEgc-G7nyB0acOqbSBjaOG7p25n!5e0!3m2!1svi!2s!4v1610430016844!5m2!1svi!2s"
+                                      width="700" height="350" frameborder="0" style="border:0;" allowfullscreen=""
+                                      aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                </div>
+
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: #3366CC; color: white">
+                © 2020 Copyright:
+                <a class="text-dark" href="https://mdbootstrap.com/" style="color:black">Trung tâm tiêm vacxin cho trẻ Thành phố Đà Nẵng</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header::header}">
+    <meta charset="UTF-8">
+    <title>Đăng kí tiêm chủng cho trẻ</title>
+</head>
+<body>
+<link >
+<div th:replace="~{layout/navbar::menu}"></div>
+
+<form method="post" th:action="@{/dktiemchung}"  th:object="${lichtiem}" >
+    <div class="container mt-5 font-weight-bold form-group">
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <a>Chọn trẻ cần tiêm<a class="text-danger">(*)</a></a>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control form-group" id="idtre1">
+                    <option th:each="tre,state: ${tres}" >
+                        <a th:text="${tre.tentre}" th:value="${tre.idtre}"></a>
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-5" style="height: 300px;">
+            <div class="col-lg-4">
+                <a>Lịch sử tiêm</a>
+            </div>
+            <div class="col-lg-8">
+                <table class="table table-success table-striped">
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên trẻ</th>
+                        <th>Tên loại vacxin</th>
+                        <th>Thời gian tiêm</th>
+                        <th>Số mũi đã tiêm</th>
+                        <th>Số mũi tối đa</th>
+                    </tr>
+                    <tr th:each="h,state: ${dk}">
+                        <td th:text="${state.count}"></td>
+                        <td th:text="${h.getTentre()}"></td>
+                        <td th:text="${h.getTenvx()}"></td>
+                        <td th:text="${h.getNgaytiem()}"></td>
+                        <td th:text="${h.getSomui()}"></td>
+                        <td th:text="${h.getSomuitoida()}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-3">
+                <a>Chọn Vacxin<a class="text-danger">(*)</a></a>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control form-group" id="mavx1">
+                    <option th:each="l: ${listvacxin}">
+                        <a th:text="${l.getTenvx()}" th:value="${l.getMaVX()}"></a>
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <a>Thời gian<a class="text-danger">(*)</a></a>
+            </div>
+            <div class="col-lg-3">
+                <input type="date" th:field="*{ngaytiem}"/>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-10">
+                <input name="mavx1"  type="hidden"/>
+                <input name="idtre1"  type="hidden"/>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <button class="btn btn-primary dangki" type="submit"> Đăng ký tiêm</button>
+                </div> <!-- form-group// -->
+            </div>
+        </div> <!-- .row// -->
+    </div>
+</form>
+<footer th:replace="~{layout/navbar :: footer}"></footer>
+</body>
+<script>
+    $(".dangki").click(function () {
+        $("input[name='idtre1']").val($("#idtre1").val());
+        $("input[name='mavx1']").val($("#mavx1").val());
+
+    });
+</script>
+</html>
+

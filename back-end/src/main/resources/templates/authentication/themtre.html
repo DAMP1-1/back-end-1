@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header::header}">
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<link >
+<div th:replace="~{layout/navbar::menu}"></div>
+<form th:action="@{/registerforchild}" method="post" th:object="${registerTre}" style="height: 300px">
+    <div class="container mt-5 font-weight-bold">
+        <div class="form-group justify-content-center">
+            <div class="container mt-5 font-weight-bold">
+                <div class="form-group justify-content-center">
+                    <div class="row mb-5">
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a>Họ tên trẻ<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{tentre}" />
+<!--                                    <p class="text-danger" th:errors="*{ten}" th:if="${#fields.hasErrors('ten')}"></p>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <a>Ngày sinh<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="date" th:field="*{ngaysinh}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a>Giới tính<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{gioitinh}">
+                                        <option value="1">Nam</option>
+                                        <option value="0">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a>Cân nặng<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{cannang}" />
+<!--                                    <p class="text-danger" th:errors="*{cannang}" th:if="${#fields.hasErrors('cannang')}"></p>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <a>Chiều cao<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" th:field="*{chieucao}"/>
+<!--                                    <p class="text-danger" th:errors="*{chieucao}" th:if="${#fields.hasErrors('chieucao')}"></p>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a>Số mũi đã tiêm<a class="text-danger">(*)</a></a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{somuidatiem}"/>
+<!--                                    <p class="text-danger" th:errors="*{somuidatiem}" th:if="${#fields.hasErrors('somuidatiem')}"></p>-->
+                                </div>
+                            </div>
+                </div>
+                    </div>
+                    <div class="row justify-content-center ">
+                        <button type="submit" class="btn btn-primary">Thêm thông tin trẻ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <table class="table table-success table-striped">
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Ngày sinh</th>
+            <th>Cân nặng</th>
+            <th>Chiều cao</th>
+            <th>Giới tính</th>
+            <th>Số mũi đã tiêm</th>
+            <th>Hành động</th>
+        </tr>
+        <tr th:each="tre,state: ${tres}">
+            <td th:text="${state.count}"></td>
+            <td th:text="${tre.tentre}"></td>
+            <td th:text="${tre.ngaysinh}"></td>
+            <td th:text="${tre.cannang}"></td>
+            <td th:text="${tre.chieucao}"></td>
+            <td th:switch="${tre.gioitinh}">
+                <a th:case="0">Nữ</a>
+                <a th:case="1">Nam</a>
+            </td>
+            <td th:text="${tre.somuidatiem}"></td>
+            <td>
+                <a href="#deleteModal" class="delete" data-toggle="modal" th:data-magiaodich="${tre.idtre}" th:data-ten="${tre.tentre}">
+                    <i class="btn btn-danger" id="btnDelete" data-toggle="tooltip" title="Edit">Xóa</i></a>
+            </td>
+        </tr>
+    </table>
+<!--    <div>-->
+<!--        <a th:href="@{'/'(page=${tres.number - 1})}" th:if="${tres.hasPrevious()}">Previous</a>-->
+<!--        <span th:text="${tres.number + 1}"></span>/<span th:text="${tres.totalPages}"></span>-->
+<!--        <a th:href="@{'/'(page=${tres.number + 1})}" th:if="${tres.hasNext()}">Next</a>-->
+<!--    </div>-->
+</div>
+
+<!--Modals delete-->
+<div id="deleteModal" class="modal fade">
+    <div class="modal-dialog">
+        <form method="get" action="/delete">
+            <div class="modal-content" style="color: black; background: cadetblue;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xóa trẻ với tên</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h5 style="color: blue;padding-left: 5px" class="tentre"></h5>
+                    <label class="name"></label>
+                    <p class="text-warning">Bạn có chắc là muốn xóa?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="product_id">
+                    <input type="button" class="btn btn-success" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<footer th:replace="~{layout/navbar :: footer}"></footer>
+</body>
+<script>
+    $(".delete").click(function (){
+        // $("[class='magiaodich']").text($(this).data("magiaodich"));
+        $("[class='tentre']").text($(this).data("ten"));
+        $('#product_id').val($(this).data("magiaodich"));
+    });
+</script>
+</html>
